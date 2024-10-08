@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Salón - {% block title %}Citas{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/cita.css' %}" />
+  </head>
+  <body>
+    <div class="contenedor-app">
+      <div class="imagen"></div>
+      <div class="app">
+        <div class="barra">
+          <p>Hola: <span>{{ nombre_completo }}</span></p>
+          <form
+            id="logout-form"
+            action="{% url 'cerrar_sesion' %}"
+            method="post"
+          >
+            {% csrf_token %}
+            <button type="submit" class="boton-cerrar">Cerrar Sesión</button>
+          </form>
+        </div>
+        <h1 class="nombre-pagina">Crear Nueva Cita</h1>
+        <p class="descripcion-pagina">Elige tus servicios y coloca tus datos</p>
+        <nav class="tabs">
+          <button class="actual" type="button" data-paso="1">Servicios</button>
+          <button type="button" data-paso="2">Información Cita</button>
+          <button type="button" data-paso="3">Resumen</button>
+        </nav>
+        <div class="seccion" id="paso-1">
+          <h2>Servicios</h2>
+          <p class="text-center">Elige tus servicios a continuación</p>
+          <div id="servicios" class="listado-servicios"></div>
+        </div>
+
+        <div class="seccion" id="paso-2">
+          <h2>Tus datos y cita</h2>
+          <p class="text-center">Coloca tus datos y fecha de tu cita</p>
+
+          <form class="formulario">
+            {% csrf_token %}
+            <input type="hidden" name="usuarioid" value="{{usuario_id}}" />
+            <div class="campo">
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Tu nombre"
+                value="{{ nombre_completo }}"
+                disabled
+              />
+            </div>
+
+            <div class="campo">
+              <label for="fecha">Fecha</label>
+              <input type="date" id="fecha" name="fecha" />
+            </div>
+
+            <div class="campo">
+              <label for="hora">Hora</label>
+              <input type="time" id="hora" name="hora" />
+            </div>
+            <input
+              type="hidden"
+              name="csrfmiddlewaretoken"
+              value="{{ csrf_token }}"
+            />
+          </form>
+        </div>
+
+        <div class="seccion contenido-resumen" id="paso-3">
+          <h2>Resumen</h2>
+          <p class="text-center">Verifica que la información sea correcta</p>
+        </div>
+
+        <div class="paginacion">
+          <button id="anterior" class="boton">&laquo; Anterior</button>
+
+          <button id="siguiente" class="boton">Siguiente &raquo;</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{% static 'js/cita.js' %}"></script>
+  </body>
+</html>

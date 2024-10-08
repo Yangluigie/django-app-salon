@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      App Citas Salón - {% block title %} Iniciar Sesión {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="contenedor-app">
+      <div class="imagen"></div>
+      <div class="app">
+        <h1 class="nombre-pagina">Iniciar Sesion</h1>
+        <p class="descripcion-pagina">Inicia sesión con tus datos</p>
+        <form class="formulario" id="login-form">
+          {% csrf_token %}
+          <div class="campo">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="tu email..."
+            />
+          </div>
+
+          <div class="campo">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Tu password..."
+            />
+          </div>
+          <input type="submit" class="boton" value="Iniciar Sesión" />
+        </form>
+        <div class="acciones">
+          <a href="{% url 'registrarme' %}"
+            >¿Aún no tienes una cuenta? Crear una</a
+          >
+          <a href="{% url 'vista_olvide_password' %}"
+            >¿Olvidaste tu password?</a
+          >
+        </div>
+        <h5></h5>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      $(document).on("submit", "#login-form", function (e) {
+        e.preventDefault();
+
+        $.ajax({
+          type: "POST",
+          url: "/login/",
+          data: {
+            email: $("#email").val(),
+            password: $("#password").val(),
+            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+          },
+          success: function (response) {
+            $("h5")
+              .removeClass("error")
+              .addClass("mensaje success")
+              .html(`<span>${response.message}</span>`);
+
+            setTimeout(function () {
+              // redirigir a la url proporcionada por el servidor panel admin
+              if (response.redirect_url) {
+                window.location.href = response.redirect_url;
+              } else {
+                window.location.href = "/dashboard/citas/";
+              }
+            }, 2000);
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            let errorMessage = "Hubo un error desconocido";
+
+            if (xhr.responseJSON && xhr.responseJSON.error) {
+              errorMessage = xhr.responseJSON.error;
+            } else if (xhr.responseText) {
+              errorMessage = xhr.responseText;
+            }
+
+            $("h5")
+              .removeClass("success")
+              .addClass("mensaje error")
+              .html(`<span>${errorMessage}</span>`);
+
+            setTimeout(function () {
+              $("h5").html("").removeClass("mensaje error").show();
+            }, 5000);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

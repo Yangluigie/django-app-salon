@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      App Citas Salón - {% block title %} Panel Administrador {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}" />
+  </head>
+  <body>
+    <div class="contenedor-app">
+      <div class="imagen"></div>
+      <div class="app">
+        <div class="barra">
+          <p>Hola: <span>{{ nombre_completo }}</span></p>
+          <form
+            id="logout-form"
+            action="{% url 'cerrar_sesion' %}"
+            method="post"
+          >
+            {% csrf_token %}
+            <button type="submit" class="boton-cerrar">Cerrar Sesión</button>
+          </form>
+        </div>
+        <div class="barra-servicios">
+          <button type="button" id="PanelAdmin" class="boton">
+            Panel Administrador
+          </button>
+          <button type="button" id="CitaAdmin" class="boton">Ver Citas</button>
+          <button type="button" id="ServiciosAdmin" class="boton">
+            Ver Servicios
+          </button>
+        </div>
+        <h1 class="nombre-pagina">Panel de administración</h1>
+
+        <!-- Contenedor de búsqueda de citas -->
+        <div id="buscarCitasContainer">
+          <h2 id="titulo-panel">Buscar Citas</h2>
+          <div class="busqueda">
+            <form class="formulario">
+              <div class="campo">
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha" name="fecha" />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Título para la lista de citas, oculto inicialmente -->
+        <h2 id="titulo-lista-citas" style="display: none">Lista de Citas</h2>
+
+        <!-- contenedor de citas, oculto inicialmente -->
+        <div id="citas-admin" style="display: none">
+          <ul id="citas-list" class="servicios"></ul>
+        </div>
+
+        <div id="resultadoCitas"></div>
+
+        <!-- Contenedor para mostrar servicios, oculto inicialmente -->
+        <div id="servicios-container" style="display: none"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

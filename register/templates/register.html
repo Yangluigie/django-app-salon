@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Citas Salón -{% block title %}Registrarme{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/register.css' %}" />
+  </head>
+  <body>
+    <div class="contenedor-app">
+      <div class="imagen"></div>
+      <div class="app">
+        <h1 class="nombre-pagina">Registrarme</h1>
+        <p class="descripcion-pagina">
+          Llena el siguiente formulario para crear una cuenta
+        </p>
+        <h5></h5>
+        <form class="formulario" id="register-form">
+          {% csrf_token %}
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Tu nombre..."
+            />
+          </div>
+
+          <div class="campo">
+            <label for="apellido">Apellido</label>
+            <input
+              type="text"
+              id="apellido"
+              name="apellido"
+              placeholder="Tu apellido..."
+            />
+          </div>
+
+          <div class="campo">
+            <label for="telefono">Teléfono</label>
+            <input
+              minlength="10"
+              maxlength="10"
+              type="tel"
+              id="telefono"
+              name="telefono"
+              placeholder="Tu Teléfono..."
+            />
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Tu E-mail..."
+            />
+          </div>
+
+          <div class="campo">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Tu Password..."
+              minlength="8"
+            />
+          </div>
+          <input type="submit" value="Crear Cuenta" class="boton" />
+        </form>
+        <div class="acciones">
+          <a href="{% url 'vista_login' %}"
+            >¿Ya tienes una cuenta? Inicia Sesión</a
+          >
+          <a href="{% url 'vista_olvide_password' %}">¿Olvidaste tu password?</a>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/register.js' %}"></script>
+    <!-- jQuery CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      $(document).on("submit", "#register-form", function (e) {
+        e.preventDefault();
+
+        $.ajax({
+          type: "POST",
+          url: "/registrar/crear/",
+          data: {
+            nombre: $("#nombre").val(),
+            apellido: $("#apellido").val(),
+            telefono: $("#telefono").val(),
+            email: $("#email").val(),
+            password: $("#password").val(),
+            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+          },
+          success: function (response) {
+            $("h5")
+              .removeClass("error")
+              .addClass("mensaje success")
+              .html(`<span>${response.message}</span>`);
+            $("#register-form")[0].reset();
+
+            setTimeout(function () {
+              $("h5").html("").removeClass("mensaje success").show();
+            }, 5000);
+
+            setTimeout(function () {
+              window.location.href = "/";
+            }, 2500);
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            let errorMessage = "Hubo un error desconocido";
+
+            if (xhr.responseJSON && xhr.responseJSON.error) {
+              errorMessage = xhr.responseJSON.error;
+            } else if (xhr.responseText) {
+              errorMessage = xhr.responseText;
+            }
+
+            $("h5")
+              .removeClass("success")
+              .addClass("mensaje error")
+              .html(`<span>${errorMessage}</span>`);
+
+            setTimeout(function () {
+              $("h5").html("").removeClass("mensaje error").show();
+            }, 5000);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

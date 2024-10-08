@@ -1,0 +1,182 @@
+.seccion {
+    padding: 5rem 0;
+    display: none;
+}
+
+.mostrar {
+    display: block;
+}
+
+.ocultar {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+@media (min-width: 768px){
+    .tabs {
+        display: flex;
+    }
+}
+
+.tabs button.actual {
+    background-color: #ffffff;
+    color: #0da6f3;
+}
+
+.tabs button:not(.actual):hover{
+    cursor: pointer;
+    background-color: rgba(13, 166, 243, 0.8);
+}
+
+.tabs button {
+    background-color: #0da6f3;
+    border: none;
+    color: #ffffff;
+    padding: 1rem;
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: background-color 300ms ease;
+}
+
+.paginacion {
+    padding: 5rem 0;
+}
+
+.paginacion button {
+    margin: 0 0 1rem 0;
+}
+
+@media (min-width: 768px) {
+    .paginacion {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.ocultarBoton {
+    visibility: hidden;
+}
+
+
+/* estilos a los servicios */
+
+.listado-servicios {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .listado-servicios {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+.servicio {
+    background-color: #ffffff;
+    padding: 3rem;
+    border-radius: 1rem;
+    transition-property: transform;
+    transition-duration: 300ms;
+    text-align: center;
+    cursor: pointer;
+}
+
+.servicio.seleccionado {
+    background-color: #0da6f3;
+}
+
+.servicio.seleccionado p {
+    color: #ffffff;
+}
+
+.servicio:hover {
+    transform: scale(1.1);
+}
+
+.servicio p {
+    color: black;
+    margin: 0 0 calc(1.25rem) 0;
+}
+
+.servicio .precio-servicio {
+    color: #0da6f3;
+    font-weight: 700;
+    font-size: 3rem;
+    margin: 0;
+}
+
+/* estilos para el apartado de resumen */
+
+.contenido-resumen p {
+    margin-bottom: 1rem;
+  }
+  
+  .contenido-resumen span {
+    color: #0da6f3;
+    font-weight: 700;
+    font-size: 2.4rem;
+  }
+.contenedor-servicio {
+    padding: 3rem 0;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+/* Estilos para el boton de cerrar sesión */
+
+.barra {
+    margin: 5rem 0;
+}
+
+@media (min-width: 768px){
+    .barra {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.boton-cerrar {
+    background-color: black;
+    color: #ffffff;
+    margin: 0;
+    padding: 1.5rem 4rem;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 700; /* Solo se necesita una vez */
+    border: none;
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 5rem 0;
+}
+
+.boton-cerrar:hover {
+    background-color: rgba(13, 166, 243, 0.8); /* Color más oscuro con opacidad */
+    cursor: pointer;
+}
+
+
+/* Estilo específico para el <p> dentro de div.barra */
+.barra p {
+    color: #ffffff; 
+    font-size: 18px; 
+    font-weight: 900;
+}
+
+/* Estilo específico para el <span> dentro de <p> en div.barra */
+.barra p span {
+    font-weight: 700; 
+    text-transform: uppercase; 
+    color: #0da6f3; 
+    background-color: #ffffff;
+    border-radius: 1px;
+    padding: 0.2rem 0.2rem;
+}

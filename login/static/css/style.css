@@ -1,0 +1,118 @@
+/* Estilos imagen y columna en dos  */
+@media (min-width: 768px) {
+    .contenedor-app {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 100vh;
+    }
+}
+
+.imagen {
+    height: 20rem;
+    background-image: url(../img/1.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+@media (min-width: 768px) {
+    .imagen {
+        height: auto;
+    }
+}
+
+.titul-inicio-sesion {
+    text-align: center;
+}
+
+.app {
+    width: 95%;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+/* Estilos formulario inicio sesion */
+
+.formulario {
+    width: 100%;
+}
+
+.campo {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.campo label {
+    flex: 0 0 10rem;
+}
+
+.campo input {
+    flex: 1;
+    border: none;
+    padding: calc(12.5px);
+    border-radius: 1rem;
+} 
+
+.boton {
+    background-color: #0da6f3; /* Color de fondo original */
+    padding: 1.5rem 4rem;
+    color: #ffffff;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 700; /* Solo se necesita una vez */
+    border: none;
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 5rem 0;
+}
+
+.boton:hover {
+    background-color: rgba(13, 166, 243, 0.8); /* Color más oscuro con opacidad */
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .boton {
+        width: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .acciones {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.acciones {
+    margin-top: 5rem;
+}
+
+.acciones a {
+    color: #ffffff;
+    display: block;
+    margin-bottom: calc(2.5rem);
+    text-align: center;
+}
+
+.mensaje span {
+    padding: calc(1.25rem);
+    color: white;
+    width: 100%;
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.success span{
+    background-color: #28a745;
+}
+
+.error span {
+    background-color: #f50a22;
+}

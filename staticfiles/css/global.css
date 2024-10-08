@@ -1,0 +1,299 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    font-size: 1.6rem;
+    font-family: sans-serif;
+}
+
+@media (min-width: 768px) {
+    body {
+        height: 100%;
+    }
+}
+
+h1, h2, h3 {
+    font-family: sans-serif;
+    font-weight: 900;
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3.6rem;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+p {
+    color: white;
+    font-size: 2rem;
+}
+
+.nombre-pagina {
+    text-align: center;
+    margin: 5rem 0;
+    font-weight: 700;
+}
+
+.descripcion-pagina {
+    text-align: center;
+}
+
+
+.contenedor {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .contenedor-app {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 100vh;
+    }
+}
+
+.imagen {
+    height: 20rem;
+    background-image: url(../img/1.jpg);
+    background-size: cover;
+    background-position: center center;
+}
+
+.app {
+    width: 95%;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+@media (min-width: 768px) {
+    .app {
+        overflow-y: scroll; /* Permite el scroll */
+        scrollbar-width: none; /* Firefox */
+    }
+}
+
+.app::-webkit-scrollbar {
+    display: none; /* Chrome, Safari y Opera */
+}
+
+.formulario {
+    margin-top: 5rem;
+    width: 100%;
+}
+
+.campo {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.campo label {
+    flex: 0 0 10rem;
+}
+
+.campo input {
+    flex: 1;
+    border: none;
+    padding: calc(12.5px);
+    border-radius: 1rem;
+} 
+
+.campo input:disabled {
+    background: linear-gradient(
+        to right, 
+        rgba(0, 0, 0, 0.3), 
+    );
+    color: #ffffff;
+    cursor: not-allowed;
+    text-transform: uppercase;
+}
+
+.boton {
+    background-color: #0da6f3; /* Color de fondo original */
+    padding: 1.5rem 4rem;
+    color: #ffffff;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 700; /* Solo se necesita una vez */
+    border: none;
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 5rem 0;
+}
+
+.boton:hover {
+    background-color: rgba(13, 166, 243, 0.8); /* Color más oscuro con opacidad */
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .boton {
+        width: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .acciones {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.acciones {
+    margin-top: 5rem;
+}
+
+.acciones a {
+    color: #ffffff;
+    display: block;
+    margin-bottom: calc(2.5rem);
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .imagen {
+        height: auto;
+    }
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+div .alerta  {
+    padding: calc(1.25rem);
+    color: white;
+    width: 100%;
+    display: block;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+div .exito {
+    background-color: #28a745;
+}
+
+div .error {
+    background-color: #f50a22;
+}
+
+
+.barra {
+    margin: 5rem 0;
+
+}
+
+
+.boton-cerrar {
+    background-color: black;
+    color: #ffffff;
+    margin: 0;
+    padding: 1.5rem 4rem;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 700; /* Solo se necesita una vez */
+    border: none;
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 5rem 0;
+}
+
+.boton-cerrar:hover {
+    background-color: rgba(13, 166, 243, 0.8); /* Color más oscuro con opacidad */
+    cursor: pointer;
+}
+
+
+/* Estilo específico para el <p> dentro de div.barra */
+.barra p {
+    color: #ffffff; 
+    font-size: 18px; 
+    font-weight: 900;
+}
+
+/* Estilo específico para el <span> dentro de <p> en div.barra */
+.barra p span {
+    font-weight: 700; 
+    text-transform: uppercase; 
+    color: #0da6f3; 
+    background-color: #ffffff;
+    border-radius: 1px;
+    padding: 0.2rem 0.2rem;
+}
+
+/* boton para eliminar cita */
+.btn-eliminar {
+    background-color: #f50a22; /* Color de fondo original */
+    padding: 1.5rem 4rem;
+    color: #ffffff;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 700; /* Solo se necesita una vez */
+    border: none;
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin: 5rem 0;
+}
+
+.btn-eliminar:hover {
+    background-color: #c30a1a; /* Color más oscuro con opacidad */
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .btn-eliminar {
+        width: auto;
+    }
+}
+
+/* estilos para los botones del admin */
+
+.barra-servicios {
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+    .barra-servicios {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.barra-servicios .boton {
+    margin: 0 0 1rem 0;
+}
