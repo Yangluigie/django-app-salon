@@ -91,9 +91,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
     'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/barber-shop',
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True  # Asegura que se utilice SSL para la conexión.
     )
 }
 
