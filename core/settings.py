@@ -90,10 +90,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-    'default': dj_database_url.config(
-        conn_max_age=600,
-        ssl_require=True  # Asegura que se utilice SSL para la conexión.
-    )
+    'default': dj_database_url.config(default='postgresql://app_salon_kp8w_user:x95IZHNx0bhfhYa0sEyV6reFgUYYckZT@dpg-cs2otf3tq21c73filgu0-a.oregon-postgres.render.com/app_salon_kp8w')
 }
 
 # Password validation
